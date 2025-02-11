@@ -25,9 +25,9 @@ final class GetTrackingResult extends Dto
      */
     public function __construct(
         public string $trackingId,
-        public string $alternateLegTrackingId,
-        public array $eventHistory,
-        public \DateTimeInterface $promisedDeliveryDate,
-        public TrackingSummary $summary,
+        public ?string $alternateLegTrackingId = null,
+        public array $eventHistory = [],
+        public ?\DateTimeInterface $promisedDeliveryDate = null,
+        public ?TrackingSummary $summary = null,
     ) {}
 }

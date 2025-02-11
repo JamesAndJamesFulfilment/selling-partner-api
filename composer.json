@@ -26,7 +26,6 @@
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^6.0|^7.0",
         "saloonphp/saloon": "^3.4",
-        "openspout/openspout": "^4.23",
         "illuminate/support": "^11.5"
     },
     "require-dev": {

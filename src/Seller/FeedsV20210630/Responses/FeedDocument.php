@@ -11,12 +11,9 @@ declare(strict_types=1);
 namespace SellingPartnerApi\Seller\FeedsV20210630\Responses;
 
 use SellingPartnerApi\Response;
-use SellingPartnerApi\Traits\DownloadsDocument;
 
 final class FeedDocument extends Response
 {
-    use DownloadsDocument;
-
     /**
      * @param  string  $feedDocumentId  The identifier for the feed document. This identifier is unique only in combination with a seller ID.
      * @param  string  $url  A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.
