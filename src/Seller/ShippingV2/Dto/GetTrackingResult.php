@@ -27,7 +27,7 @@ final class GetTrackingResult extends Dto
         public string $trackingId,
         public ?string $alternateLegTrackingId = null,
         public array $eventHistory = [],
-        public \DateTimeInterface $promisedDeliveryDate = null,
-        public TrackingSummary $summary = null,
+        public ?\DateTimeInterface $promisedDeliveryDate = null,
+        public ?TrackingSummary $summary = null,
     ) {}
 }
