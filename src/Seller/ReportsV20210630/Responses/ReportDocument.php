@@ -11,12 +11,9 @@ declare(strict_types=1);
 namespace SellingPartnerApi\Seller\ReportsV20210630\Responses;
 
 use SellingPartnerApi\Response;
-use SellingPartnerApi\Traits\DownloadsDocument;
 
 final class ReportDocument extends Response
 {
-    use DownloadsDocument;
-
     /**
      * @param  string  $reportDocumentId  The identifier for the report document. This identifier is unique only in combination with a seller ID.
      * @param  string  $url  A presigned URL for the report document. If `compressionAlgorithm` is not returned, you can download the report directly from this URL. This URL expires after 5 minutes.
