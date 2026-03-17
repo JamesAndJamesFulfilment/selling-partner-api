@@ -16,8 +16,10 @@ final class AmazonOrderDetails extends Dto
 {
     /**
      * @param  string  $orderId  The Amazon order ID associated with the Amazon order fulfilled by this shipment.
+     * @param  ?string  $amazonSellerID  The Amazon seller ID of the seller for whom the shipment is being created. Required for SFP child account shipments.
      */
     public function __construct(
         public string $orderId,
+        public ?string $amazonSellerID = null,
     ) {}
 }

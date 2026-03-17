@@ -35,6 +35,8 @@ final class GetRatesRequest extends Dto
      * @param  ?string  $shipmentType  Shipment type.
      * @param  ?AccessPointDetails  $destinationAccessPointDetails  AccessPointDetails object
      * @param  CarrierAccount[]|null  $carrierAccounts  A list of CarrierAccounts
+     * @param  ?string  $quoteForShipperNumber  The parent shipper ID to use when quoting rates for a child account.
+     * @param  ?string  $shipmentForShipperNumber  The child shipper ID the shipment is being created for. Used in parent/child account SFP scenarios.
      */
     public function __construct(
         public Address $shipFrom,
@@ -50,5 +52,7 @@ final class GetRatesRequest extends Dto
         public ?string $shipmentType = null,
         public ?AccessPointDetails $destinationAccessPointDetails = null,
         public ?array $carrierAccounts = null,
+        public ?string $quoteForShipperNumber = null,
+        public ?string $shipmentForShipperNumber = null,
     ) {}
 }
