@@ -5855,17 +5855,12 @@
                 "description": "The shipment source channel type.",
                 "enum": [
                     "AMAZON",
-                    "ON_AMAZON",
                     "EXTERNAL"
                 ],
                 "x-docgen-enum-table-extension": [
                     {
                         "value": "AMAZON",
                         "description": "Indicates that the shipment originates from an Amazon order."
-                    },
-                    {
-                        "value": "ON_AMAZON",
-                        "description": "Indicates that the shipment originates from an Amazon SFP (Seller Fulfilled Prime) order."
                     },
                     {
                         "value": "EXTERNAL",
