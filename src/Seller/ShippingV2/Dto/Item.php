@@ -27,7 +27,6 @@ final class Item extends Dto
      * @param  ?InvoiceDetails  $invoiceDetails  The invoice details for charges associated with the goods in the package. Only applies to certain regions.
      * @param  ?string[]  $serialNumbers  A list of unique serial numbers in an Amazon package that can be used to guarantee non-fraudulent items. The number of serial numbers in the list must be less than or equal to the quantity of items being shipped. Only applicable when channel source is Amazon.
      * @param  ?DirectFulfillmentItemIdentifiers  $directFulfillmentItemIdentifiers  Item identifiers for an item in a direct fulfillment shipment.
-     * @param  ?string  $orderItemId  The Amazon order item ID as generated in Seller Central. Required for SFP orders.
      */
     public function __construct(
         public int $quantity,
@@ -42,6 +41,5 @@ final class Item extends Dto
         public ?InvoiceDetails $invoiceDetails = null,
         public ?array $serialNumbers = null,
         public ?DirectFulfillmentItemIdentifiers $directFulfillmentItemIdentifiers = null,
-        public ?string $orderItemId = null,
     ) {}
 }

@@ -5267,10 +5267,6 @@
                     },
                     "directFulfillmentItemIdentifiers": {
                         "$ref": "#/components/schemas/DirectFulfillmentItemIdentifiers"
-                    },
-                    "orderItemId": {
-                        "type": "string",
-                        "description": "The Amazon order item ID as generated in Seller Central. Required for SFP orders."
                     }
                 },
                 "description": "An item in a package."
