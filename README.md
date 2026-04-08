@@ -18,14 +18,12 @@ A PHP library for connecting to Amazon's [Selling Partner API](https://github.co
 
 ### Related packages
 
-* [`highsidelabs/laravel-spapi`](https://github.com/highsidelabs/laravel-spapi): A [Laravel](https://laravel.com) wrapper for this package that makes SP API integration in Laravel projects quick and easy.
+* [`highsidelabs/laravel-spapi`](https://github.com/highsidelabs/laravel-spapi): A [Laravel](https://laravel.com) wrapper for this package that makes SP API integration in Laravel projects quick and easy. I also developed a [Laravel SP API starter project](https://tools.highsidelabs.co/starter-kit) to make developing SP API apps on Laravel as easy as possible.
 * [`highsidelabs/amazon-business-api`](https://github.com/highsidelabs/amazon-business-api): A PHP library for Amazon's [Business API](https://developer-docs.amazon.com/amazon-business/docs).
 * [`highsidelabs/walmart-api`](https://github.com/highsidelabs/walmart-api-php): A PHP library for [Walmart's seller and supplier APIs](https://developer.walmart.com), including the Marketplace, Drop Ship Vendor, Content Provider, and Warehouse Supplier APIs.
 * [`shipstream/fedex-rest-sdk`](https://github.com/shipstream/fedex-rest-php-sdk): A PHP library for interacting with FedEx's REST APIs, built by me on behalf of [ShipStream](https://shipstream.io).
 
 ---
-
-**I'm available for consulting work!** If you need support designing and building applications with Amazon, Walmart, or other e-commerce APIs, or building SDKs in PHP, I can help. Shoot me an email at [jesse@highsidelabs.co](mailto:jesse@highsidelabs.co).
 
 If you've found any of my packages useful, please consider [becoming a Sponsor](https://github.com/sponsors/jlevers), or making a one-time donation via the button below. I appreciate any and all support! Keeping open source projects alive is a community effort.
 
@@ -35,6 +33,8 @@ If you've found any of my packages useful, please consider [becoming a Sponsor](
 
 ### Sponsored by **[Tesmo](https://tesmollc.com)**.
 
+### Sponsored by **[Highside Labs](https://tools.highsidelabs.co/starter-kit)**. Get started with SP API development on Laravel in minutes.
+
 ---
 
 > [!NOTE]
@@ -42,7 +42,7 @@ If you've found any of my packages useful, please consider [becoming a Sponsor](
 
 ## Features
 
-* Supports all Selling Partner API operations (for Sellers and Vendors) as of 6/19/2024
+* Supports all Selling Partner API operations (for Sellers and Vendors) as of 1/29/2026
 * Automatically generates Restricted Data Tokens for all calls that require them -- no extra calls to the Tokens API needed
 * Includes a [`Document` helper class](#uploading-and-downloading-documents) for uploading and downloading feed/report documents
 * Can handle the end-to-end OAuth flow, from building authorization URLs to converting authorization codes into refresh tokens
@@ -251,9 +251,17 @@ $sellerConnector = SellingPartnerApi::seller(/* ... */);
     ```php
     $catalogItemsApi = $sellerConnector->catalogItemsV0();
     ```
+* **Customer Feedback API (v2024-06-01)** ([docs](https://developer-docs.amazon.com/sp-api/docs/customer-feedback-api-v2024-06-01-reference))
+    ```php
+    $customerFeedbackApi = $sellerConnector->customerFeedbackV20240601();
+    ```
 * **Data Kiosk API (v2023-11-15)** ([docs](https://developer-docs.amazon.com/sp-api/v0/docs/data-kiosk-api-v2023-11-15-reference))
     ```php
     $dataKioskApi = $sellerConnector->dataKioskV20231115();
+    ```
+* **Delivery by Amazon API (v2022-07-01)** ([docs](https://developer-docs.amazon.com/sp-api/reference/delivery-by-amazon-v2022-07-01))
+    ```php
+    $deliveryByAmazonApi = $sellerConnector->deliveryByAmazonV20220701();
     ```
 * **EasyShip API (v2022-03-23)** ([docs](https://developer-docs.amazon.com/sp-api/docs/easy-ship-api-v2022-03-23-reference))
     ```php
@@ -323,6 +331,10 @@ $sellerConnector = SellingPartnerApi::seller(/* ... */);
     ```php
     $ordersApi = $sellerConnector->ordersV0();
     ```
+* **Orders API (v2026-01-01)** ([docs](https://developer-docs.amazon.com/sp-api/reference/orders-v2026-01-01))
+    ```php
+    $ordersApi = $sellerConnector->ordersV20260101();
+    ```
 * **Product Fees API (v0)** ([docs](https://developer-docs.amazon.com/sp-api/docs/product-fees-api-v0-reference))
     ```php
     $productFeesApi = $sellerConnector->productFeesV0();
@@ -354,6 +366,10 @@ $sellerConnector = SellingPartnerApi::seller(/* ... */);
 * **Sellers API (v1)** ([docs](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference))
     ```php
     $sellersApi = $sellerConnector->sellersV1();
+    ```
+* **Seller Wallet API (v2024-03-01)** ([docs](https://developer-docs.amazon.com/sp-api/reference/seller-wallet-v2024-03-01))
+    ```php
+    $sellerWalletApi = $sellerConnector->sellerWalletV20240301();
     ```
 * **Services API (v1)** ([docs](https://developer-docs.amazon.com/sp-api/docs/services-api-v1-reference))
     ```php
@@ -390,6 +406,10 @@ $sellerConnector = SellingPartnerApi::seller(/* ... */);
 * **Uploads API (v2020-11-01)** ([docs](https://developer-docs.amazon.com/sp-api/docs/uploads-api-reference))
     ```php
     $uploadsApi = $sellerConnector->uploadsV20201101();
+    ```
+* **Vehicles API (v2024-11-01)** ([docs](https://developer-docs.amazon.com/sp-api/docs/vehicles-api-v2024-11-01-reference))
+    ```php
+    $vehiclesApi = $sellerConnector->vehiclesV20241101();
     ```
 
 ### Vendor APIs
@@ -493,12 +513,13 @@ $reportDocument = $response->dto();
 $contents = $reportDocument->download($reportType);
 ```
 
-The `download` method has three parameters:
+The `download` method has four parameters:
 * `documentType` (string): The report type (or feed type of the feed result document being fetched). This is required if you want the document data parsed for you.
-* `preProcess` (bool): Whether to preprocess the document data. If `true`, the document data will be parsed and formatted into a more usable format. If `false`, the raw document text will be returned. Defaults to `true`.
+* `postProcess` (bool): Whether to postprocess the document data. If `true`, the document data will be parsed and formatted into a more usable format. If `false`, the raw document text will be returned. Defaults to `true`.
 * `encoding` (string): The encoding of the document data. Defaults to `UTF-8`.
+* `client` (`GuzzleHttp\Client`): An optional custom Guzzle client to use to download the document.
 
-If you are working with huge documents you can use `downloadStream()` to minimize the memory consumption. `downloadStream()` returns a `Psr\Http\Message\StreamInterface`.
+If you are working with huge documents you can use `downloadStream()` to minimize the memory consumption. `downloadStream()` returns a `Psr\Http\Message\StreamInterface`. `downloadStream()` also has an optional `$client` parameter.
 
 ```php
 $streamContents = $reportDocument->downloadStream();  // The raw report stream
@@ -537,7 +558,7 @@ $createFeedResponse = $feedsApi->createFeed($createFeedSpec);
 $feedId = $createFeedResponse->dto()->feedId;
 ```
 
-If you are working with feed documents that are too large to fit in memory, you can pass anything that Guzzle can turn into a stream into `FeedDocument::upload()` instead of a string.
+If you are working with feed documents that are too large to fit in memory, you can pass anything that Guzzle can turn into a stream into `FeedDocument::upload()` instead of a string. `FeedDocument::upload()` also has an optional `$client` parameter, for passing custom Guzzle clients.
 
 
 ## Downloading a feed result document

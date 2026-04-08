@@ -49,9 +49,19 @@ class SellerConnector extends SellingPartnerApi
         return new CatalogItemsV0\Api($this);
     }
 
+    public function customerFeedbackV20240601(): CustomerFeedbackV20240601\Api
+    {
+        return new CustomerFeedbackV20240601\Api($this);
+    }
+
     public function dataKioskV20231115(): DataKioskV20231115\Api
     {
         return new DataKioskV20231115\Api($this);
+    }
+
+    public function deliveryByAmazonV20220701(): DeliveryByAmazonV20220701\Api
+    {
+        return new DeliveryByAmazonV20220701\Api($this);
     }
 
     public function easyShipV20220323(): EasyShipV20220323\Api
@@ -144,6 +154,11 @@ class SellerConnector extends SellingPartnerApi
         return new OrdersV0\Api($this);
     }
 
+    public function ordersV20260101(): OrdersV20260101\Api
+    {
+        return new OrdersV20260101\Api($this);
+    }
+
     public function productFeesV0(): ProductFeesV0\Api
     {
         return new ProductFeesV0\Api($this);
@@ -182,6 +197,11 @@ class SellerConnector extends SellingPartnerApi
     public function sellersV1(): SellersV1\Api
     {
         return new SellersV1\Api($this);
+    }
+
+    public function sellerWalletV20240320(): SellerWalletV20240301\Api
+    {
+        return new SellerWalletV20240301\Api($this);
     }
 
     public function servicesV1(): ServicesV1\Api
@@ -227,5 +247,10 @@ class SellerConnector extends SellingPartnerApi
     public function uploadsV20201101(): UploadsV20201101\Api
     {
         return new UploadsV20201101\Api($this);
+    }
+
+    public function vehiclesV20241101(): VehiclesV20241101\Api
+    {
+        return new VehiclesV20241101\Api($this);
     }
 }

@@ -15,14 +15,11 @@ use SellingPartnerApi\Dto;
 final class TrackingDetails extends Dto
 {
     /**
-     * @param  \DateTimeInterface  $shipBy  Timestamp denoting when the shipment will be shipped
-     *                                      Date should be in ISO 8601 format as defined by date-time.
+     * @param  string  $bookingId  The identifier that is received from transportation to uniquely identify a booking.
      * @param  ?CarrierCode  $carrierCode  Identifies the carrier that will deliver the shipment.
-     * @param  ?string  $bookingId  The identifier that is received from transportation to uniquely identify a booking.
      */
     public function __construct(
-        public \DateTimeInterface $shipBy,
+        public string $bookingId,
         public ?CarrierCode $carrierCode = null,
-        public ?string $bookingId = null,
     ) {}
 }

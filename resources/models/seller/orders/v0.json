@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Orders v0",
+        "title": "Selling Partner API for Orders",
         "description": "Use the Orders Selling Partner API to programmatically retrieve order information. With this API, you can develop fast, flexible, and custom applications to manage order synchronization, perform order research, and create demand-based decision support tools. \n\n_Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders from 2016 onward. For all other marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the response).",
         "contact": {
             "name": "Selling Partner API Developer Support",
@@ -24,8 +24,7 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrders",
-                "description": "Returns orders that are created or updated during the specified time period. If you want to return specific types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include in your request; it only impacts the pagination for the filtered orders response. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0167 | 20 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.",
+                "description": "Returns orders that are created or updated during the specified time period. If you want to return specific types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include in your request; it only impacts the pagination for the filtered orders response. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0167 | 20 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrders",
                 "parameters": [
                     {
@@ -115,17 +114,9 @@
                         }
                     },
                     {
-                        "name": "BuyerEmail",
-                        "in": "query",
-                        "description": "The email address of a buyer. Used to select orders that contain the specified email address.",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
                         "name": "SellerOrderId",
                         "in": "query",
-                        "description": "An order identifier that is specified by the seller. Used to select only the orders that match the order identifier. If `SellerOrderId` is specified, then `FulfillmentChannels`, `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, LastUpdatedBefore, and `BuyerEmail` cannot be specified.",
+                        "description": "An order identifier that is specified by the seller. Used to select only the orders that match the order identifier. If `SellerOrderId` is specified, then `FulfillmentChannels`, `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, and `LastUpdatedBefore` cannot be specified.",
                         "schema": {
                             "type": "string"
                         }
@@ -213,7 +204,7 @@
                     {
                         "name": "EarliestDeliveryDateBefore",
                         "in": "query",
-                        "description": "Use this date to select orders with a earliest delivery date before (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.",
+                        "description": "Use this date to select orders with an earliest delivery date before (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.",
                         "schema": {
                             "type": "string"
                         }
@@ -221,7 +212,7 @@
                     {
                         "name": "EarliestDeliveryDateAfter",
                         "in": "query",
-                        "description": "Use this date to select orders with a earliest delivery date after (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.",
+                        "description": "Use this date to select orders with an earliest delivery date after (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.",
                         "schema": {
                             "type": "string"
                         }
@@ -274,13 +265,13 @@
                                                 "PurchaseDate": "2017-01-20T19:49:35Z",
                                                 "LastUpdateDate": "2017-01-20T19:49:35Z",
                                                 "OrderStatus": "Pending",
-                                                "FulfillmentChannel": "SellerFulfilled",
+                                                "FulfillmentChannel": "MFN",
                                                 "NumberOfItemsShipped": 0,
                                                 "NumberOfItemsUnshipped": 0,
                                                 "PaymentMethod": "Other",
                                                 "PaymentMethodDetails": [
                                                     "CreditCard",
-                                                    "GiftCerificate"
+                                                    "GiftCertificate"
                                                 ],
                                                 "MarketplaceId": "ATVPDKIKX0DER",
                                                 "ShipmentServiceLevelCategory": "Standard",
@@ -303,7 +294,6 @@
                                                     "CountryCode": "US"
                                                 },
                                                 "BuyerInfo": {
-                                                    "BuyerEmail": "user@example.com",
                                                     "BuyerName": "John Doe",
                                                     "BuyerTaxInfo": {
                                                         "CompanyLegalName": "A Company Name"
@@ -450,13 +440,13 @@
                                                     "PurchaseDate": "2017-01-20T19:49:35Z",
                                                     "LastUpdateDate": "2017-01-20T19:49:35Z",
                                                     "OrderStatus": "Pending",
-                                                    "FulfillmentChannel": "SellerFulfilled",
+                                                    "FulfillmentChannel": "MFN",
                                                     "NumberOfItemsShipped": 0,
                                                     "NumberOfItemsUnshipped": 0,
                                                     "PaymentMethod": "Other",
                                                     "PaymentMethodDetails": [
                                                         "CreditCard",
-                                                        "GiftCerificate"
+                                                        "GiftCertificate"
                                                     ],
                                                     "MarketplaceId": "ATVPDKIKX0DER",
                                                     "ShipmentServiceLevelCategory": "Standard",
@@ -501,13 +491,13 @@
                                                     "PurchaseDate": "2017-01-20T19:49:35Z",
                                                     "LastUpdateDate": "2017-01-20T19:49:35Z",
                                                     "OrderStatus": "Pending",
-                                                    "FulfillmentChannel": "SellerFulfilled",
+                                                    "FulfillmentChannel": "MFN",
                                                     "NumberOfItemsShipped": 0,
                                                     "NumberOfItemsUnshipped": 0,
                                                     "PaymentMethod": "Other",
                                                     "PaymentMethodDetails": [
                                                         "CreditCard",
-                                                        "GiftCerificate"
+                                                        "GiftCertificate"
                                                     ],
                                                     "MarketplaceId": "ATVPDKIKX0DER",
                                                     "ShipmentServiceLevelCategory": "Standard",
@@ -680,8 +670,7 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrder",
-                "description": "Returns the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrder",
                 "parameters": [
                     {
@@ -722,13 +711,13 @@
                                         "PurchaseDate": "2017-01-20T19:49:35Z",
                                         "LastUpdateDate": "2017-01-20T19:49:35Z",
                                         "OrderStatus": "Pending",
-                                        "FulfillmentChannel": "SellerFulfilled",
+                                        "FulfillmentChannel": "MFN",
                                         "NumberOfItemsShipped": 0,
                                         "NumberOfItemsUnshipped": 0,
                                         "PaymentMethod": "Other",
                                         "PaymentMethodDetails": [
                                             "CreditCard",
-                                            "GiftCerificate"
+                                            "GiftCertificate"
                                         ],
                                         "MarketplaceId": "ATVPDKIKX0DER",
                                         "ShipmentServiceLevelCategory": "Standard",
@@ -765,7 +754,6 @@
                                             "CountryCode": "US"
                                         },
                                         "BuyerInfo": {
-                                            "BuyerEmail": "user@example.com",
                                             "BuyerName": "John Doe",
                                             "BuyerTaxInfo": {
                                                 "CompanyLegalName": "A Company Name"
@@ -871,6 +859,17 @@
                                             "PaymentMethod": "Other",
                                             "PaymentMethodDetails": [
                                                 "Invoice"
+                                            ],
+                                            "PaymentExecutionDetail": [
+                                                {
+                                                    "Payment": {
+                                                        "CurrencyCode": "BRL",
+                                                        "Amount": "20.00"
+                                                    },
+                                                    "PaymentMethod": "Pix",
+                                                    "AcquirerId": "XX.XXX.XXX/0001-ZZ",
+                                                    "AuthorizationCode": "123456"
+                                                }
                                             ],
                                             "IsReplacementOrder": false,
                                             "MarketplaceId": "A1PA6795UKMFR9",
@@ -1061,14 +1060,13 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrderBuyerInfo",
-                "description": "Returns buyer information for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns buyer information for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrderBuyerInfo",
                 "parameters": [
                     {
                         "name": "orderId",
                         "in": "path",
-                        "description": "An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.",
+                        "description": "The Amazon order identifier in 3-7-7 format.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1100,7 +1098,6 @@
                                 "example": {
                                     "payload": {
                                         "AmazonOrderId": "902-3159896-1390916",
-                                        "BuyerEmail": "user@example.com",
                                         "BuyerName": "John Smith",
                                         "BuyerTaxInfo": {
                                             "CompanyLegalName": "Company Name"
@@ -1123,7 +1120,6 @@
                                     "response": {
                                         "payload": {
                                             "AmazonOrderId": "902-1845936-5435065",
-                                            "BuyerEmail": "fzyrv6gwkhbb15c@example.com",
                                             "BuyerName": "MFNIntegrationTestMerchant"
                                         }
                                     }
@@ -1280,14 +1276,13 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrderAddress",
-                "description": "Returns the shipping address for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns the shipping address for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrderAddress",
                 "parameters": [
                     {
                         "name": "orderId",
                         "in": "path",
-                        "description": "An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.",
+                        "description": "The Amazon order identifier in 3-7-7 format.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1504,13 +1499,278 @@
                 }
             }
         },
+        "/orders/v0/orders/{orderId}/fulfillmentInstructions": {
+            "get": {
+                "tags": [
+                    "OrdersV0"
+                ],
+                "description": "Returns the fulfillment instructions for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "operationId": "getOrderFulfillmentInstructions",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "The Amazon order identifier in 3-7-7 format.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                },
+                                "example": {
+                                    "payload": {
+                                        "AmazonOrderId": "902-3159896-1390916",
+                                        "FulfillmentPlans": [
+                                            {
+                                                "CreationDate": "2023-10-25T12:00:00Z",
+                                                "FulfillmentPlanId": "1",
+                                                "FulfillmentType": "SHIP",
+                                                "FulfillmentPlanStatus": "ACTIVE",
+                                                "LastStatusUpdateDate": "2023-10-25T12:00:00Z",
+                                                "FulfillmentPlanItems": [
+                                                    {
+                                                        "OrderItemId": "6217867064725",
+                                                        "Measurement": {
+                                                            "Unit": "COUNT",
+                                                            "Value": 20
+                                                        }
+                                                    }
+                                                ],
+                                                "ShippingInstructions": {
+                                                    "CarrierCode": "UPS",
+                                                    "ShippingMethod": "Ground",
+                                                    "ShippingConstraints": {
+                                                        "PalletDelivery": "MANDATORY"
+                                                    }
+                                                },
+                                                "FulfillmentLocation": {
+                                                    "SupplySourceId": "bb3e1352-a3b4-4b99-aeb7-b1a923837ef2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "TEST_CASE_200"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "AmazonOrderId": "TEST_CASE_200",
+                                            "FulfillmentPlans": [
+                                                {
+                                                    "CreationDate": "2023-10-25T12:00:00Z",
+                                                    "FulfillmentPlanId": "1",
+                                                    "FulfillmentType": "SHIP",
+                                                    "FulfillmentPlanStatus": "ACTIVE",
+                                                    "LastStatusUpdateDate": "2023-10-25T12:00:00Z",
+                                                    "FulfillmentPlanItems": [
+                                                        {
+                                                            "OrderItemId": "6217867064725",
+                                                            "Measurement": {
+                                                                "Unit": "COUNT",
+                                                                "Value": 20
+                                                            }
+                                                        }
+                                                    ],
+                                                    "ShippingInstructions": {
+                                                        "CarrierCode": "UPS",
+                                                        "ShippingMethod": "Ground",
+                                                        "ShippingConstraints": {
+                                                            "PalletDelivery": "MANDATORY"
+                                                        }
+                                                    },
+                                                    "FulfillmentLocation": {
+                                                        "SupplySourceId": "bb3e1352-a3b4-4b99-aeb7-b1a923837ef2"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "TEST_CASE_400"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid Input"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderFulfillmentInstructionsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/orders/v0/orders/{orderId}/orderItems": {
             "get": {
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrderItems",
-                "description": "Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to retrieve the next page of order items.\n\n__Note__: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to retrieve the next page of order items.\n\n__Note__: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrderItems",
                 "parameters": [
                     {
@@ -1853,8 +2113,7 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrderItemsBuyerInfo",
-                "description": "Returns buyer information for the order items in the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns buyer information for the order items in the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrderItemsBuyerInfo",
                 "parameters": [
                     {
@@ -1928,6 +2187,7 @@
                                             "AmazonOrderId": "902-1845936-5435065",
                                             "OrderItems": [
                                                 {
+                                                    "OrderItemId": "68828574383266",
                                                     "BuyerCustomizedInfo": {
                                                         "CustomizedURL": "https://zme-caps.amazon.com/t/bR6qHkzSOxuB/J8nbWhze0Bd3DkajkOdY-XQbWkFralegp2sr_QZiKEE/1"
                                                     },
@@ -2094,8 +2354,7 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "updateShipmentStatus",
-                "description": "Update the shipment status for an order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Update the shipment status for an order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "updateShipmentStatus",
                 "parameters": [
                     {
@@ -2338,14 +2597,13 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "getOrderRegulatedInfo",
-                "description": "Returns regulated information for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns regulated information for the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getOrderRegulatedInfo",
                 "parameters": [
                     {
                         "name": "orderId",
                         "in": "path",
-                        "description": "An Amazon-defined order identifier, in 3-7-7 format.",
+                        "description": "The Amazon order identifier in 3-7-7 format.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -2762,14 +3020,13 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "updateVerificationStatus",
-                "description": "Updates (approves or rejects) the verification status of an order containing regulated products.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Updates (approves or rejects) the verification status of an order containing regulated products.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "updateVerificationStatus",
                 "parameters": [
                     {
                         "name": "orderId",
                         "in": "path",
-                        "description": "An Amazon-defined order identifier, in 3-7-7 format.",
+                        "description": "The Amazon order identifier in 3-7-7 format.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -3153,8 +3410,7 @@
                 "tags": [
                     "OrdersV0"
                 ],
-                "summary": "confirmShipment",
-                "description": "Updates the shipment confirmation status for a specified order.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values then those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Updates the shipment confirmation status for a specified order.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "confirmShipment",
                 "parameters": [
                     {
@@ -3623,6 +3879,18 @@
                 },
                 "description": "The response schema for the `getOrderItemsBuyerInfo` operation."
             },
+            "GetOrderFulfillmentInstructionsResponse": {
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "$ref": "#/components/schemas/FulfillmentInstructions"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The response schema for the `getOrderFulfillmentInstructions` operation."
+            },
             "OrdersList": {
                 "required": [
                     "Orders"
@@ -3638,11 +3906,15 @@
                     },
                     "LastUpdatedBefore": {
                         "type": "string",
-                        "description": "Use this date to select orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. All dates must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format."
+                        "description": "Use this date to select orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. Use [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format for all dates."
                     },
                     "CreatedBefore": {
                         "type": "string",
                         "description": "Use this date to select orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format."
+                    },
+                    "BuyerEmail": {
+                        "type": "string",
+                        "description": "The anonymized email address of the buyer."
                     }
                 },
                 "description": "A list of orders along with additional information to make subsequent API calls."
@@ -3971,10 +4243,6 @@
                     "AmazonOrderId": {
                         "type": "string",
                         "description": "An Amazon-defined order identifier, in 3-7-7 format."
-                    },
-                    "BuyerEmail": {
-                        "type": "string",
-                        "description": "The anonymized email address of the buyer."
                     },
                     "BuyerName": {
                         "type": "string",
@@ -4583,7 +4851,19 @@
                     },
                     "PaymentMethod": {
                         "type": "string",
-                        "description": "A sub-payment method for a COD order.\n\n**Possible values**:\n* `COD`: Cash on delivery \n* `GC`: Gift card \n* `PointsAccount`: Amazon Points\n* `Invoice`: Invoice"
+                        "description": "The sub-payment method for an order. \n\n**Possible values**:\n* `COD`: Cash on delivery \n* `GC`: Gift card \n* `PointsAccount`: Amazon Points \n* `Invoice`: Invoice \n* `CreditCard`: Credit card \n* `Pix`: Pix \n* `Other`: Other."
+                    },
+                    "AcquirerId": {
+                        "type": "string",
+                        "description": "The Brazilian Taxpayer Identifier (CNPJ) of the payment processor or acquiring bank that authorizes the payment. \n\n**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard` or `Pix`."
+                    },
+                    "CardBrand": {
+                        "type": "string",
+                        "description": "The card network or brand used in the payment transaction (for example, Visa or Mastercard). \n\n**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard`."
+                    },
+                    "AuthorizationCode": {
+                        "type": "string",
+                        "description": "The unique code that confirms the payment authorization. \n\n**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard` or `Pix`."
                     }
                 },
                 "description": "Information about a sub-payment method used to pay for a COD order."
@@ -4831,9 +5111,25 @@
                     },
                     "AmazonPrograms": {
                         "$ref": "#/components/schemas/AmazonPrograms"
+                    },
+                    "ExportInfo": {
+                        "$ref": "#/components/schemas/ExportInfo"
                     }
                 },
                 "description": "A single order item."
+            },
+            "ExportInfo": {
+                "type": "object",
+                "properties": {
+                    "ExportCharge": {
+                        "$ref": "#/components/schemas/Money"
+                    },
+                    "ExportChargeModel": {
+                        "type": "string",
+                        "description": "Holds the `ExportCharge` collection model that is associated with the specified order item.\n\n**Possible values**: `AMAZON_FACILITATED`: Import/export charge is withheld by Amazon and remitted to the customs authority by the carrier on behalf of the buyer/seller."
+                    }
+                },
+                "description": "Contains information that is related to the export of an order item."
             },
             "AmazonPrograms": {
                 "required": [
@@ -4843,13 +5139,13 @@
                 "properties": {
                     "Programs": {
                         "type": "array",
-                        "description": "A list of the programs that are associated with the specified order item.\n\n**Possible values**: `SUBSCRIBE_AND_SAVE`",
+                        "description": "A list of the programs that Amazon associates with the order item.\n\n**Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`",
                         "items": {
                             "type": "string"
                         }
                     }
                 },
-                "description": "Contains the list of programs that are associated with an item.\n\nPossible programs are:\n - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products."
+                "description": "Contains the list of programs that Amazon associates with an item.\n\nPossible programs are:\n - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products. - **FBM Ship+**: Unlocks expedited shipping without the extra cost. Helps you to provide accurate and fast delivery dates to Amazon customers. You also receive protection from late deliveries, a discount on expedited shipping rates, and cash back when you ship."
             },
             "SubstitutionPreferences": {
                 "required": [
@@ -5252,6 +5548,143 @@
                 },
                 "description": "Contains the instructions about the fulfillment, such as the location from where you want the order filled."
             },
+            "FulfillmentInstructions": {
+                "required": [
+                    "AmazonOrderId"
+                ],
+                "type": "object",
+                "properties": {
+                    "FulfillmentPlans": {
+                        "type": "array",
+                        "description": "List of all fulfillment plans for the given order id",
+                        "items": {
+                            "$ref": "#/components/schemas/FulfillmentPlan"
+                        }
+                    },
+                    "AmazonOrderId": {
+                        "type": "string",
+                        "description": "An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                },
+                "description": "Contains all fulfillment plans for the order"
+            },
+            "FulfillmentPlan": {
+                "required": [
+                    "CreationDate",
+                    "FulfillmentPlanId",
+                    "FulfillmentPlanItems",
+                    "FulfillmentPlanStatus",
+                    "FulfillmentType",
+                    "LastStatusUpdateDate"
+                ],
+                "type": "object",
+                "properties": {
+                    "FulfillmentPlanId": {
+                        "type": "string",
+                        "description": "Unique identifier for a fulfillment plan."
+                    },
+                    "CreationDate": {
+                        "type": "string",
+                        "description": "Time when the fulfillment plan was created in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format."
+                    },
+                    "FulfillmentType": {
+                        "type": "string",
+                        "description": "Type of fulfillment",
+                        "enum": [
+                            "INSTORE_PICKUP",
+                            "SERVICE",
+                            "SHIP"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "INSTORE_PICKUP",
+                                "description": "Buyer picks up items in plan from store."
+                            },
+                            {
+                                "value": "SERVICE",
+                                "description": "Services that are performed for the buyer, such as assembly."
+                            },
+                            {
+                                "value": "SHIP",
+                                "description": "Shipped by seller through detailed ship method."
+                            }
+                        ]
+                    },
+                    "FulfillmentPlanStatus": {
+                        "type": "string",
+                        "description": "The fulfillment plan status.",
+                        "enum": [
+                            "ACTIVE",
+                            "ABORTED",
+                            "COMPLETED",
+                            "PARTIALLY_FULFILLED"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "ACTIVE",
+                                "description": "The plan is ready to be fulfilled."
+                            },
+                            {
+                                "value": "ABORTED",
+                                "description": "Plan was canceled, either through order canceling or replanning of shipment."
+                            },
+                            {
+                                "value": "COMPLETED",
+                                "description": "Plan has been fulfilled and completed."
+                            },
+                            {
+                                "value": "PARTIALLY_FULFILLED",
+                                "description": "Plan has been partially fulfilled."
+                            }
+                        ]
+                    },
+                    "LastStatusUpdateDate": {
+                        "type": "string",
+                        "description": "The time when the fulfillment plan's status was last updated in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format."
+                    },
+                    "FulfillmentLocation": {
+                        "$ref": "#/components/schemas/FulfillmentLocation"
+                    },
+                    "ShippingInstructions": {
+                        "$ref": "#/components/schemas/ShippingInstructions"
+                    },
+                    "FulfillmentPlanItems": {
+                        "type": "array",
+                        "description": "The details of the order items that are included in the fulfillment plan.",
+                        "items": {
+                            "$ref": "#/components/schemas/FulfillmentPlanItem"
+                        }
+                    }
+                },
+                "description": "A collection of order items that are to be fulfilled from the same location with the same shipping, pickup, and service instructions."
+            },
+            "FulfillmentLocation": {
+                "type": "object",
+                "properties": {
+                    "SupplySourceId": {
+                        "type": "string",
+                        "description": "The fulfillment location identifier."
+                    }
+                },
+                "description": "Represents a location from which the plan is to be fulfilled."
+            },
+            "ShippingInstructions": {
+                "type": "object",
+                "properties": {
+                    "CarrierCode": {
+                        "type": "string",
+                        "description": "The name of the carrier that delivers the package."
+                    },
+                    "ShippingMethod": {
+                        "type": "string",
+                        "description": "The ship method that is used for the order."
+                    },
+                    "ShippingConstraints": {
+                        "$ref": "#/components/schemas/FulfillmentPlanShippingConstraints"
+                    }
+                },
+                "description": "The shipping-related information of a delivery."
+            },
             "ShippingConstraints": {
                 "type": "object",
                 "properties": {
@@ -5283,13 +5716,56 @@
                     }
                 ]
             },
+            "FulfillmentPlanShippingConstraints": {
+                "type": "object",
+                "properties": {
+                    "PalletDelivery": {
+                        "$ref": "#/components/schemas/FulfillmentPlanConstraintType"
+                    },
+                    "SignatureConfirmation": {
+                        "$ref": "#/components/schemas/FulfillmentPlanConstraintType"
+                    }
+                },
+                "description": "Delivery constraints applicable to this order."
+            },
+            "FulfillmentPlanConstraintType": {
+                "type": "string",
+                "description": "Details the importance of the constraint present on the item.",
+                "enum": [
+                    "MANDATORY",
+                    "RECOMMENDED"
+                ],
+                "x-docgen-enum-table-extension": [
+                    {
+                        "value": "MANDATORY",
+                        "description": "Item must follow the constraint to ensure order is met with buyer's delivery requirements."
+                    },
+                    {
+                        "value": "RECOMMENDED",
+                        "description": "Item is recommended to follow the constraint to ensure order is met with buyer's delivery requirements."
+                    }
+                ]
+            },
+            "FulfillmentPlanItem": {
+                "required": [
+                    "Measurement",
+                    "OrderItemId"
+                ],
+                "type": "object",
+                "properties": {
+                    "OrderItemId": {
+                        "type": "string",
+                        "description": "An Amazon-defined associated order item's order item identifier."
+                    },
+                    "Measurement": {
+                        "$ref": "#/components/schemas/Measurement"
+                    }
+                },
+                "description": "The order items associated with this fulfillment plan."
+            },
             "BuyerInfo": {
                 "type": "object",
                 "properties": {
-                    "BuyerEmail": {
-                        "type": "string",
-                        "description": "The anonymized email address of the buyer."
-                    },
                     "BuyerName": {
                         "type": "string",
                         "description": "The buyer name or the recipient name."
@@ -5304,6 +5780,10 @@
                     "PurchaseOrderNumber": {
                         "type": "string",
                         "description": "The purchase order (PO) number entered by the buyer at checkout. Only returned for orders where the buyer entered a PO number at checkout."
+                    },
+                    "BuyerEmail": {
+                        "type": "string",
+                        "description": "The anonymized email address of the buyer."
                     }
                 },
                 "description": "Buyer information."
@@ -5543,7 +6023,7 @@
                     },
                     "carrierName": {
                         "type": "string",
-                        "description": "Carrier Name that will deliver the package. Required when `carrierCode` is \"Others\" "
+                        "description": "Carrier name that will deliver the package. Required when `carrierCode` is \"Other\" "
                     },
                     "shippingMethod": {
                         "type": "string",
