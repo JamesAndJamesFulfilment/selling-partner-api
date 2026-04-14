@@ -15,7 +15,7 @@ use SellingPartnerApi\Dto;
 final class Context extends Dto
 {
     /**
-     * @param  ?string  $storeName  The name of the store that is related to the transaction.
+     * @param  ?string  $storeName  The store name associated with the transaction.
      * @param  ?string  $orderType  The transaction's order type.
      * @param  ?string  $channel  Channel details of related transaction.
      * @param  ?string  $asin  The Amazon Standard Identification Number (ASIN) of the item.
@@ -26,11 +26,10 @@ final class Context extends Dto
      * @param  ?string  $paymentMethod  The method of payment.
      * @param  ?string  $paymentReference  The reference number of the payment.
      * @param  ?\DateTimeInterface  $paymentDate  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-     * @param  ?string  $deferralReason  Deferral policy applied on the transaction.
+     * @param  ?string  $deferralReason  The deferral policy applied to the transaction.
      *
-     * **Examples:** `B2B`,`DD7`
+     * **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
      * @param  ?\DateTimeInterface  $maturityDate  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-     * @param  ?string  $deferralStatus  The status of the transaction. For example, `HOLD`,`RELEASE`.
      * @param  ?\DateTimeInterface  $startTime  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
      * @param  ?\DateTimeInterface  $endTime  A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
      */
@@ -49,7 +48,6 @@ final class Context extends Dto
         public ?\DateTimeInterface $paymentDate = null,
         public ?string $deferralReason = null,
         public ?\DateTimeInterface $maturityDate = null,
-        public ?string $deferralStatus = null,
         public ?\DateTimeInterface $startTime = null,
         public ?\DateTimeInterface $endTime = null,
     ) {}

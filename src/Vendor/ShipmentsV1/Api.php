@@ -4,10 +4,12 @@ namespace SellingPartnerApi\Vendor\ShipmentsV1;
 
 use Saloon\Http\Response;
 use SellingPartnerApi\BaseResource;
+use SellingPartnerApi\Vendor\ShipmentsV1\Dto\SubmitShipmentConfirmationRequest;
 use SellingPartnerApi\Vendor\ShipmentsV1\Dto\SubmitShipmentConfirmationsRequest;
 use SellingPartnerApi\Vendor\ShipmentsV1\Dto\SubmitShipments as SubmitShipments1;
 use SellingPartnerApi\Vendor\ShipmentsV1\Requests\GetShipmentDetails;
 use SellingPartnerApi\Vendor\ShipmentsV1\Requests\GetShipmentLabels;
+use SellingPartnerApi\Vendor\ShipmentsV1\Requests\SubmitShipmentConfirmation;
 use SellingPartnerApi\Vendor\ShipmentsV1\Requests\SubmitShipmentConfirmations;
 use SellingPartnerApi\Vendor\ShipmentsV1\Requests\SubmitShipments;
 
@@ -25,6 +27,17 @@ class Api extends BaseResource
     }
 
     /**
+     * @param  SubmitShipmentConfirmationRequest  $submitShipmentConfirmationRequest  The request schema for the SubmitShipmentConfirmation operation.
+     */
+    public function submitShipmentConfirmation(
+        SubmitShipmentConfirmationRequest $submitShipmentConfirmationRequest,
+    ): Response {
+        $request = new SubmitShipmentConfirmation($submitShipmentConfirmationRequest);
+
+        return $this->connector->send($request);
+    }
+
+    /**
      * @param  ?int  $limit  The limit to the number of records returned. Default value is 50 records.
      * @param  ?string  $sortOrder  Sort in ascending or descending order by purchase order creation date.
      * @param  ?string  $nextToken  Used for pagination when there are more shipments than the specified result size limit.
@@ -37,7 +50,7 @@ class Api extends BaseResource
      * @param  ?\DateTimeInterface  $shippedBefore  Get Shipment Details by passing Shipped Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
      * @param  ?\DateTimeInterface  $shippedAfter  Get Shipment Details by passing Shipped Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
      * @param  ?\DateTimeInterface  $estimatedDeliveryBefore  Get Shipment Details by passing Estimated Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
-     * @param  ?\DateTimeInterface  $estimatedDeliveryAfter  Get Shipment Details by passing Estimated Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+     * @param  ?\DateTimeInterface  $estimatedDeliveryAfter  Get Shipment Details by passing Estimated Delivery Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
      * @param  ?\DateTimeInterface  $shipmentDeliveryBefore  Get Shipment Details by passing Shipment Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
      * @param  ?\DateTimeInterface  $shipmentDeliveryAfter  Get Shipment Details by passing Shipment Delivery Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
      * @param  ?\DateTimeInterface  $requestedPickUpBefore  Get Shipment Details by passing Before Requested pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
@@ -94,7 +107,7 @@ class Api extends BaseResource
     /**
      * @param  ?int  $limit  The limit to the number of records returned. Default value is 50 records.
      * @param  ?string  $sortOrder  Sort the list by shipment label creation date in ascending or descending order.
-     * @param  ?string  $nextToken  A token that is used to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+     * @param  ?string  $nextToken  A token that you use to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
      * @param  ?\DateTimeInterface  $labelCreatedAfter  Shipment labels created after this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
      * @param  ?\DateTimeInterface  $labelCreatedBefore  Shipment labels created before this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
      * @param  ?string  $buyerReferenceNumber  Get Shipment labels by passing buyer reference number.

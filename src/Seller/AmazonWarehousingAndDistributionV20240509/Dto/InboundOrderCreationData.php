@@ -21,13 +21,11 @@ final class InboundOrderCreationData extends Dto
      * @param  DistributionPackageQuantity[]  $packagesToInbound  List of packages to be inbounded.
      * @param  ?string  $externalReferenceId  Reference ID that can be used to correlate the order with partner resources.
      * @param  ?InboundPreferences  $preferences  Preferences that can be passed in context of an inbound order
-     * @param  ?\DateTimeInterface  $shipBy  Estimated date by when goods have to be picked up.
      */
     public function __construct(
         public Address $originAddress,
         public array $packagesToInbound,
         public ?string $externalReferenceId = null,
         public ?InboundPreferences $preferences = null,
-        public ?\DateTimeInterface $shipBy = null,
     ) {}
 }

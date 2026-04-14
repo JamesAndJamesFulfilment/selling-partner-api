@@ -32,8 +32,9 @@ final class Transaction extends Dto
      *
      * **Possible values:**
      *
-     * * `Deferred`
-     * * `Released`
+     * * `DEFERRED`: the transaction is currently deferred.
+     * * `RELEASED`: the transaction is currently released.
+     * * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
      * @param  ?string  $description  Describes the reasons for the transaction.
      *
      * **Example:** 'Order Payment', 'Refund Order'
@@ -42,7 +43,7 @@ final class Transaction extends Dto
      * @param  ?MarketplaceDetails  $marketplaceDetails  Information about the marketplace where the transaction occurred.
      * @param  Item[]|null  $items  A list of items in the transaction.
      * @param  Context[]|null  $contexts  A list of additional information about the item.
-     * @param  Breakdown[]|null  $breakdowns  A list of breakdowns that provide details on how the total amount is calculated for the transaction.
+     * @param  Breakdown[]|null  $breakdowns  A list of breakdowns that detail how the total amount is calculated for the transaction.
      */
     public function __construct(
         public ?SellingPartnerMetadata $sellingPartnerMetadata = null,
